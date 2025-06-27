@@ -29,5 +29,6 @@ impl Player {
         println!("Name: {}", self.name);
         println!("Health: {}", self.health);
         println!("Damage: {}", self.damage);
+        println!();
     }
 }
