@@ -1,5 +1,5 @@
 mod player;
-use std::process::{exit, ExitCode};
+use std::process::exit;
 
 use getch_rs::{Getch,Key};
 
