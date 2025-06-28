@@ -31,4 +31,8 @@ impl Player {
         println!("Damage: {}", self.damage);
         println!();
     }
+    
+    pub fn damage(&mut self, amount: u32) {
+        self.health -= amount;
+    }
 }
