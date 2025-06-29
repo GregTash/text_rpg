@@ -22,6 +22,6 @@ impl Enemy {
     }
 
     pub fn damage(&mut self, amount: u32) {
-        self.health -= amount;
+        self.health = self.health.saturating_sub(amount);
     }
 }

@@ -7,6 +7,14 @@ use std::process::exit;
 
 use getch_rs::{Getch,Key};
 
+use std::process::Command;
+
+fn reset_terminal() {
+    let _ = Command::new("stty")
+        .arg("sane")
+        .status();
+}
+
 fn main() {
     let mut player = player::Player::new();
     let mut enemy = enemy::Enemy::new();
@@ -29,7 +37,7 @@ fn hub(player: &mut Player, enemy: &mut Enemy) {
     match key.getch() {
         Ok(Key::Char('1')) => combat(player, enemy),
         Ok(Key::Char('2')) => player.display_stats(),
-        Ok(Key::Char('3')) => exit(0),
+        Ok(Key::Char('3')) => {reset_terminal(); exit(0)}
         Ok(_key) => print!(""),
         Err(e) => println!("{e}"),
     }
@@ -41,7 +49,7 @@ fn combat(player: &mut Player, enemy: &mut Enemy) {
 
     loop {
         enemy.display_stats();
-
+        
         println!("What would you like to do?");
         println!("1) Attack");
         println!("2) View Stats");
@@ -61,6 +69,7 @@ fn combat(player: &mut Player, enemy: &mut Enemy) {
         }
 
         if player.health <= 0 {
+            reset_terminal();
             exit(0);
         }
     }
