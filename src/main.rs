@@ -37,7 +37,7 @@ fn hub(player: &mut Player, enemy: &mut Enemy) {
 
 fn combat(player: &mut Player, enemy: &mut Enemy) {
     let key = Getch::new();
-    enemy.health = 20;
+    *enemy = Enemy::new();
 
     loop {
         enemy.display_stats();
